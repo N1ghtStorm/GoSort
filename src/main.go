@@ -1,17 +1,46 @@
 package main
 
-func main() {
+import "fmt"
 
+func main() {
+	var slice []int = []int{3, 6, 7, 2, 9, 4}
+	fmt.Println(slice)
+	fmt.Println("===========================")
+	qSort(&slice)
+	fmt.Println(slice)
 }
 
 func qSort(slice *[]int) {
-	initiateQuickSort(slice, 0, len(*slice))
+	initiateQuickSort(slice, 0, len(*slice)-1)
 }
 
-func initiateQuickSort(slice *[]int, first int, last int) {
-	if last > 2 {
+func initiateQuickSort(slicep *[]int, first int, last int) {
+	if first >= last {
 		return
 	}
 
-	//part := partiton()
+	var slice = *slicep
+	var wall = first
+
+	for i := 0; i < last; i++ {
+		if slice[i] < slice[last] {
+			slice[wall], slice[i] = slice[i], slice[wall]
+			wall++
+			println("===============")
+			println(wall)
+			println("---------------")
+			println(first)
+			println("===============")
+		}
+
+		slice[wall], slice[last] = slice[last], slice[wall]
+	}
+
+	if wall > 0 {
+		initiateQuickSort(slicep, first, wall-1)
+	}
+
+	if wall < last {
+		//initiateQuickSort(slicep, wall+1, last)
+	}
 }
