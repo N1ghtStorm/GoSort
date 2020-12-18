@@ -22,25 +22,16 @@ func initiateQuickSort(slicep *[]int, first int, last int) {
 	var slice = *slicep
 	var wall = first
 
-	for i := 0; i < last; i++ {
+	for i := first; i < last; i++ {
 		if slice[i] < slice[last] {
 			slice[wall], slice[i] = slice[i], slice[wall]
 			wall++
-			println("===============")
-			println(wall)
-			println("---------------")
-			println(first)
-			println("===============")
 		}
-
-		slice[wall], slice[last] = slice[last], slice[wall]
 	}
-
+	slice[wall], slice[last] = slice[last], slice[wall]
 	if wall > 0 {
-		initiateQuickSort(slicep, first, wall-1)
+		initiateQuickSort(&slice, first, wall-1)
 	}
+	initiateQuickSort(&slice, wall+1, last)
 
-	if wall < last {
-		//initiateQuickSort(slicep, wall+1, last)
-	}
 }
